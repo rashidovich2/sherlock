@@ -185,11 +185,11 @@ class SitesInformation:
         Return Value:
         None
         """
-        sites = {}
-        for site in self.sites:
-            if self.sites[site].is_nsfw:
-                continue
-            sites[site] = self.sites[site]  
+        sites = {
+            site: self.sites[site]
+            for site in self.sites
+            if not self.sites[site].is_nsfw
+        }
         self.sites =  sites
 
     def site_name_list(self):
